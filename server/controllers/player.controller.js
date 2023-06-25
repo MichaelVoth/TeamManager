@@ -13,9 +13,9 @@ module.exports = {
             .catch(err => response.status(400).json(err))
     },
     update: (request, response) => {
-        const { id } = request.params; // player id
-        const num = Number(request.params.num); // game number, converted to a number
-        const { status } = request.body; // status is the new status for the game
+        const { id } = request.params; // player id is mapped from the statusList component
+        const num = Number(request.params.num); // game number comes from the gameSchedule component
+        const { status } = request.body; // new status for the game that comes from the game status toggle button
     
         Player.findById(id) // find the player by id
             .then(player => {
@@ -28,7 +28,7 @@ module.exports = {
                     } else { // if game status not found
                         player.statuses.push({ game: num, status }); // create a new game status
                     }
-                    return player.save(); // save the player
+                    return player.save(); // save the player which will return a promise
                 }
             })
             .then(updatedPlayer => response.json(updatedPlayer))

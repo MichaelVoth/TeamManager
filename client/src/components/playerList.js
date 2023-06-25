@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 
 const PlayerList = (props) => {
 
-    const [players, setPlayers] = useState([]);
+    const [players, setPlayers] = useState([]);// Array of player objects
     const [open, setOpen] = useState(false); // Delete confirmation dialog
     const [toDelete, setToDelete] = useState(''); // Player ID to delete
 
@@ -61,7 +61,10 @@ const PlayerList = (props) => {
                                     <TableCell>{player.name}</TableCell>
                                     <TableCell>{player.position}</TableCell>
                                     <TableCell>
-                                        <Button variant="contained" color="primary" onClick={(e) => { handleOpen(player._id) }}>Delete</Button>
+                                        <Button variant="contained" color="primary" 
+                                        onClick={(e) => { //This pulls up the dialog component
+                                            handleOpen(player._id) }}>Delete
+                                        </Button>
                                     </TableCell>
                                 </TableRow>
                             )
@@ -70,9 +73,9 @@ const PlayerList = (props) => {
                 </Table>
             </TableContainer>
 
-            <Dialog // Delete confirmation dialog
-                open={open} 
-                onClose={handleClose}
+            <Dialog // A dialog is a type of modal window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+                open={open} // This checks if the dialog is open
+                onClose={handleClose} // This is the function that runs when the dialog is closed or canceled
             >
                 <DialogTitle>
                     {"Delete Player"}
@@ -83,10 +86,12 @@ const PlayerList = (props) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>
+                    <Button // Caneel turns off the dialog
+                    onClick={handleClose}>
                         Cancel
                     </Button>
-                    <Button onClick={handleDelete} color="primary" autoFocus>
+                    <Button onClick={handleDelete} color="primary" autoFocus //Auto focus is the button that is selected when the dialog opens. This is the delete button which sends the delete request to the server and passes the player ID to the deletePlayer function
+                    >
                         Delete
                     </Button>
                 </DialogActions>

@@ -46,9 +46,9 @@ const PlayerForm = (props) => {
                 label="Player Name"
                 name="name"
                 autoFocus
-                error={!!errors.name}
-                helperText={errors.name ? errors.name.message : ""}
-                onChange={(e) => setPlayer({ ...player, name: e.target.value })}
+                error={!!errors.name} //Ternary operator to set error to true if there is an error
+                helperText={errors.name ? errors.name.message : ""} //Ternaary operator to set helper text to error message if there is an error
+                onChange={(e) => setPlayer({ ...player, name: e.target.value })}//Spread operator to copy player object and update name
             />
             <TextField
                 margin="normal"

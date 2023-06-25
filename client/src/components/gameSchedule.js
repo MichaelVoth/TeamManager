@@ -23,7 +23,9 @@ const GameSchedule = ({ onGameChange }) => {
                 <Link key={gameNum} onClick={() => onGameChange(gameNum)}>
                     Game {gameNum}, </Link>
             ))}
+            <br /><br />
             <button onClick={addGame}>Add Game</button>
+            <button onClick={() => setGames(games.slice(0, games.length - 1))}>Remove Game</button>
         </div>
     );
 };
