@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Paper } from '@mui/material';
 
 const GameSchedule = ({ onGameChange }) => { 
     const [games, setGames] = useState(() => { // initialize games to the value in local storage, or to [1] if nothing in local storage
@@ -19,6 +20,7 @@ const GameSchedule = ({ onGameChange }) => {
 
     return (
         <div className='gameSchedule'>
+            <Paper elevation={3} style={{ padding: '20px' }}>
             {games.map((gameNum) => (
                 <Link key={gameNum} onClick={() => onGameChange(gameNum)}>
                     Game {gameNum}, </Link>
@@ -26,6 +28,7 @@ const GameSchedule = ({ onGameChange }) => {
             <br /><br />
             <button onClick={addGame}>Add Game</button>
             <button onClick={() => setGames(games.slice(0, games.length - 1))}>Remove Game</button>
+            </Paper>
         </div>
     );
 };
